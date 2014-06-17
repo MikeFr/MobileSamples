@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html> 
+ 	<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+    <title>Map</title>
+     
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+	
+    <link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />    
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAwuzwW-_2N90PA6FdmgofwJqMReAeQuY&sensor=true"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    
+    <script type="text/javascript">
+	
+	function initializeMap() 
+	{
+    	var mapOptions = 
+		{
+        	center: new google.maps.LatLng(43.069452, -89.411373),
+	        zoom: 11,
+    	    mapTypeId: google.maps.MapTypeId.ROADMAP
+    	};
+    	var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+	}
+	
+	document.addEventListener("deviceready", onDeviceReady, false);
+    // Cordova is ready
+    //
+    function onDeviceReady() 
+	{
+    	alert("onDeviceReady");
+    	navigator.geolocation.getCurrentPosition(onSuccess, onError,{ enableHighAccuracy: true, maximumAge : 3000, timeout : 60000 });
+    }
+
+    // onSuccess Geolocation
+    //
+    function onSuccess(position) 
+	{
+		alert("onSuccess");
+    	var element = document.getElementById('geolocation');
+        element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
+                            'Longitude: '          + position.coords.longitude             + '<br />' +
+                            'Altitude: '           + position.coords.altitude              + '<br />' +
+                            'Accuracy: '           + position.coords.accuracy              + '<br />' +
+                            'Altitude Accuracy: '  + position.coords.altitudeAccuracy      + '<br />' +
+                            'Heading: '            + position.coords.heading               + '<br />' +
+                            'Speed: '              + position.coords.speed                 + '<br />' +
+                            'Timestamp: '          + position.timestamp                    + '<br />';
+							
+		//MAP
+		var myLat = position.coords.latitude;
+        var myLong = position.coords.longitude;
+		var mapOptions = {
+			center: new google.maps.LatLng(myLat, myLong),
+			zoom: 14,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+        var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
+		//MARKER
+		var marker = new google.maps.Marker({position: new google.maps.LatLng(myLat, myLong),
+                                                    map: map,
+                                                    title:"MyPosition"
+                                                    });
+    }
+
+    // onError Callback receives a PositionError object
+    //
+    function onError(error) 
+	{
+    	alert('code: '    + error.code    + '\n message: ' + error.message + '\n');
+    }
+    </script>
+	</head> 
+  	
+	<body> 
+    	<div data-role="page" id="index">
+      		<div data-role="header" data-theme="b"><h1><center>TestGeoLoc PhoneGap</center></h1></div>
+      	<div data-role="content" style="padding:0;">
+        	<p id="geolocation">Loading Geolocation Data...</p>
+      	</div>
+      	<div id="map_canvas" style="width:100%; height:300px">
+		
+        </div>
+      <div data-role="footer" data-theme="b"><h4>Sample MikeGs Dev.</h4></div>
+    </div>
+  </body> 
+</html>

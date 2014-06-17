@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<widget xmlns = "http://www.w3.org/ns/widgets"
+    xmlns:gap = "http://phonegap.com/ns/1.0"
+    id        = "com.phonegap.example"
+    version   = "1.0.0">
+
+<name>TestPhoneGap GeoLocation</name>
+<description>A Geolocation Application using PhoneGap.</description>
+
+<author href="https://example.com" email="you@example.com">Mickael PETITFILS</author>
+
+<gap:plugin name="org.apache.cordova.geolocation" version="0.3.7" />
+
+<access origin="*.google.com"/>
+<access origin="*.googleapis.com"/>
+<access origin="*.gstatic.com"/>
+
+</widget>
