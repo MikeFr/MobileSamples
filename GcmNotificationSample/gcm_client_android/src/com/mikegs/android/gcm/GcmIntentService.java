@@ -127,8 +127,8 @@ public class GcmIntentService extends IntentService {
         //Title
         .setContentTitle("GCM Notification")
         .setStyle(new NotificationCompat.BigTextStyle()
-        .bigText(responce))
-        .setContentText(responce)
+        .bigText(message))
+        .setContentText(message)
         .setAutoCancel(true);
         
         mBuilder.setContentIntent(contentIntent);

@@ -71,17 +71,25 @@ public class DemoActivity extends Activity {
         context = getApplicationContext();
 
         // Check device for Play Services APK. If check succeeds, proceed with GCM registration.
-        if (checkPlayServices()) {
+        mDisplay.setText("Checking Google Play Services...");
+        if (checkPlayServices()) 
+        {
+        	mDisplay.setText("Checking Google Play Services...OK\n");
             gcm = GoogleCloudMessaging.getInstance(this);
             regid = getRegistrationId(context);
 
             if (regid.isEmpty()) {
+            	mDisplay.append("Your device is not registered!\n");
+            	mDisplay.append("Registering...\n");
                 registerInBackground();
             }
             else{
+            	mDisplay.append("Your device is already registered!\n");
             	Log.i(TAG, regid);
             }
+            mDisplay.append("You can now receive message from GCM!" + "\n");
         } else {
+        	mDisplay.setText("Checking Google Play Services...ERROR\n");
             Log.i(TAG, "No valid Google Play Services APK found.");
         }
     }
@@ -173,7 +181,7 @@ public class DemoActivity extends Activity {
                         gcm = GoogleCloudMessaging.getInstance(context);
                     }
                     regid = gcm.register(SENDER_ID);
-                    msg = "Device registered, registration ID=" + regid;
+                    msg = "Device registered!\nRegistration ID=" + regid;
 
                     // You should send the registration ID to your server over HTTP, so it
                     // can use GCM/HTTP or CCS to send messages to your app.
@@ -196,41 +204,41 @@ public class DemoActivity extends Activity {
 
             @Override
             protected void onPostExecute(String msg) {
-                mDisplay.append(msg + "\n");
+            	mDisplay.append(msg + "\n\n");
             }
         }.execute(null, null, null);
     }
 
-    // Send an upstream message.
-    public void onClick(final View view) {
-
-        if (view == findViewById(R.id.send)) {
-            new AsyncTask<Void, Void, String>() {
-                @Override
-                protected String doInBackground(Void... params) {
-                    String msg = "";
-                    try {
-                        Bundle data = new Bundle();
-                        data.putString("my_message", "Hello World");
-                        data.putString("my_action", "com.google.android.gcm.demo.app.ECHO_NOW");
-                        String id = Integer.toString(msgId.incrementAndGet());
-                        gcm.send(SENDER_ID + "@gcm.googleapis.com", id, data);
-                        msg = "Sent message";
-                    } catch (IOException ex) {
-                        msg = "Error :" + ex.getMessage();
-                    }
-                    return msg;
-                }
-
-                @Override
-                protected void onPostExecute(String msg) {
-                    mDisplay.append(msg + "\n");
-                }
-            }.execute(null, null, null);
-        } else if (view == findViewById(R.id.clear)) {
-            mDisplay.setText("");
-        }
-    }
+//    // Send an upstream message.
+//    public void onClick(final View view) {
+//
+//        if (view == findViewById(R.id.send)) {
+//            new AsyncTask<Void, Void, String>() {
+//                @Override
+//                protected String doInBackground(Void... params) {
+//                    String msg = "";
+//                    try {
+//                        Bundle data = new Bundle();
+//                        data.putString("my_message", "Hello World");
+//                        data.putString("my_action", "com.google.android.gcm.demo.app.ECHO_NOW");
+//                        String id = Integer.toString(msgId.incrementAndGet());
+//                        gcm.send(SENDER_ID + "@gcm.googleapis.com", id, data);
+//                        msg = "Sent message";
+//                    } catch (IOException ex) {
+//                        msg = "Error :" + ex.getMessage();
+//                    }
+//                    return msg;
+//                }
+//
+//                @Override
+//                protected void onPostExecute(String msg) {
+//                    mDisplay.append(msg + "\n");
+//                }
+//            }.execute(null, null, null);
+//        } else if (view == findViewById(R.id.clear)) {
+//            mDisplay.setText("");
+//        }
+//    }
 
     @Override
     protected void onDestroy() {
@@ -267,5 +275,6 @@ public class DemoActivity extends Activity {
      */
     private void sendRegistrationIdToBackend() {
       // Your implementation here.
+    	//mDisplay.append("sending key to server..." + "\n");
     }
 }
