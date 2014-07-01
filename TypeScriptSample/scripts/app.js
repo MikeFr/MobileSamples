@@ -82,9 +82,11 @@ button.textContent = "Say Hello";
 button.onclick = function () {
     sam.move();
 };
+r1_action.appendChild(button);
 
 // Text
 r1_name.innerHTML = this.sam.Name();
 
 var tom = new Horse("Tommy the Palomino");
+this.tom.move();
 //# sourceMappingURL=app.js.map
