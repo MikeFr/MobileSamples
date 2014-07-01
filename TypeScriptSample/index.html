@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html> 
+ 	<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+    <title>TypeScriptSample</title>
+     
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="scripts/script.js"></script>
+	</head> 
+  	
+	<body> 
+    	<div data-role="page" id="index">
+      		<div data-role="header" data-theme="b"><h1><center>TypeScript and PhoneGap</center></h1></div>
+      	<div data-role="content" style="padding:0;">
+        	<p id="device_ready">Waiting for device...</p>
+      	</div>
+      	<div id="animals_list" style="width:100%; height:300px">
+		<TABLE BORDER="1" id="table_animals"> 
+          <CAPTION> List of Animals: </CAPTION> 
+          <TR> 
+        	<TH> Photo </TH> 
+         	<TH> Name </TH> 
+         	<TH> Make Move ? </TH> 
+          </TR> 
+          <TR id="row1"> 
+         	<TD id="r1_photo">  </TD> 
+         	<TD id="r1_name">  </TD>
+         	<TD id="r1_move">  </TD> 
+          </TR> 
+          <TR id="row2"> 
+         	<TD id="r2_photo">  </TD> 
+         	<TD id="r2_name">  </TD>
+         	<TD id="r2_move">  </TD> 
+          </TR> 
+        </TABLE> 
+        </div>
+      <div data-role="footer" data-theme="b"><h4>Sample MikeGs Dev.</h4></div>
+    </div>
+  </body> 
+</html>
