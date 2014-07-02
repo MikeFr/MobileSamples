@@ -1,45 +1,15 @@
 ﻿<!DOCTYPE html>
-<html>
+
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
-    <title>TypeScriptSample</title>
-
-    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-    <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
-    <script type="text/javascript" src="cordova.js"></script>
-
-    <script type="text/javascript" src="scripts/script.js"></script>
-    <script type="text/javascript" src="scripts/app.js"></script>
+    <meta charset="utf-8" />
+    <title>TypeScript HTML App</title>
+    <link rel="stylesheet" href="app.css" type="text/css" />
+    <script src="app.js"></script>
 </head>
-
 <body>
-    <div data-role="page" id="index">
-        <div data-role="header" data-theme="b"><h1><center>TypeScript and PhoneGap</center></h1></div>
-        <div data-role="content" style="padding:0;">
-            <p id="device_ready">Waiting for device...</p>
-        </div>
-        <div id="animals_list" style="width:100%; height:300px">
-            <table border="1" id="table_animals">
-                <caption> List of Animals: </caption>
-                <tr>
-                    <th> Photo </th>
-                    <th> Name </th>
-                    <th> Make Move ? </th>
-                </tr>
-                <tr id="row1">
-                    <td id="r1_photo">  </td>
-                    <td id="r1_name">  </td>
-                    <td id="r1_move">  </td>
-                </tr>
-                <tr id="row2">
-                    <td id="r2_photo">  </td>
-                    <td id="r2_name">  </td>
-                    <td id="r2_move">  </td>
-                </tr>
-            </table>
-        </div>
-        <div data-role="footer" data-theme="b"><h4>Sample MikeGs Dev.</h4></div>
-    </div>
+    <h1>TypeScript HTML App</h1>
+
+    <div id="content"></div>
 </body>
 </html>
